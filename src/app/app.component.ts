@@ -1,6 +1,5 @@
 import { Component, VERSION } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // formgroup is control complete form
 // formcomtrol it handle single input field
@@ -12,11 +11,15 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AppComponent {
   loginForm = new FormGroup({
-    user: new FormControl(''),
+    user: new FormControl('', [Validators.required]),
     password: new FormControl(''),
   });
 
   loginUser() {
     console.log(this.loginForm.value);
+  }
+
+  get user() {
+    return this.loginForm.get('user');
   }
 }
